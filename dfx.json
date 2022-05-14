@@ -1,0 +1,35 @@
+{
+  "canisters": {
+    "tripx": {
+      "main": "src/tripx/main.mo",
+      "type": "motoko"
+    },
+    "tripx_assets": {
+      "dependencies": [
+        "tripx"
+      ],
+      "frontend": {
+        "entrypoint": "src/tripx_assets/src/index.html"
+      },
+      "source": [
+        "src/tripx_assets/assets",
+        "dist/tripx_assets/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "dfx": "0.9.2",
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
+    }
+  },
+  "version": 1
+}
