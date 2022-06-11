@@ -29,7 +29,7 @@ If you want to test your project locally, you can use the following commands:
 dfx start --background
 
 # Deploys your canisters to the replica and generates your candid interface
-dfx deploy
+dfx deploy --argument "(principal\"$(dfx identity get-principal)\")"
 ```
 
 Once the job completes, your application will be available at `http://localhost:8000?canisterId={asset_canister_id}`.
@@ -41,6 +41,12 @@ npm start
 ```
 
 Which will start a server at `http://localhost:8080`, proxying API requests to the replica at port 8000.
+
+## everything about NFT
+
+```bash
+dfx canister call tripx mintNFT "(record { to = (variant { \"principal\" = principal \"$(dfx identity get-principal)\" }); metadata = \"\" })"
+```
 
 ### Note on frontend environment variables
 
