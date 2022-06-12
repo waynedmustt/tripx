@@ -45,7 +45,7 @@ Which will start a server at `http://localhost:8080`, proxying API requests to t
 ## everything about NFT
 
 ```bash
-dfx canister call tripx mintNFT "(record { to = (variant { \"principal\" = principal \"$(dfx identity get-principal)\" }); metadata = \"\" })"
+dfx canister call tripx mintNFT "(record { to = (variant { \"principal\" = principal \"$(dfx identity get-principal)\" }); metadata = opt blob "{\22url\22:\22http://your-url.com/image.png\22,\22description\22:\22my first mint!\22}" })"
 ```
 
 ### Note on frontend environment variables
