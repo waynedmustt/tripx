@@ -126,4 +126,9 @@ shared actor class tripX_NFT(init_minter: Principal) = this {
   public query func getTokens() : async [(TokenIndex, Metadata)] {
     Iter.toArray(_tokenMetadata.entries());
   };
+
+  public query func getAccountIdentifier(principal: Principal): async AccountIdentifier {
+    let accountIdentifier = AID.fromPrincipal(principal, null);
+    accountIdentifier;
+  }
 };
