@@ -34,14 +34,33 @@ type MintRequest =
    metadata: opt blob;
    to: User;
  };
+type Metadata = 
+ variant {
+   fungible:
+    record {
+      decimals: nat8;
+      metadata: opt blob;
+      name: text;
+      symbol: text;
+    };
+   nonfungible: record {metadata: opt blob;};
+ };
 type Memo = blob;
 type Extension = text;
 type Balance = nat;
+type AccountIdentifier__1 = text;
 type AccountIdentifier = text;
 service : {
   extensions: () -> (vec Extension) query;
   getMinter: () -> (principal) query;
-  greet: (text) -> (text);
+  getRegistry: () -> (vec record {
+                            TokenIndex;
+                            AccountIdentifier__1;
+                          }) query;
+  getTokens: () -> (vec record {
+                          TokenIndex;
+                          Metadata;
+                        }) query;
   mintNFT: (MintRequest) -> (TokenIndex);
   setMinter: (principal) -> ();
   transfer: (TransferRequest) -> (TransferResponse);

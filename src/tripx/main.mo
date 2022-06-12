@@ -67,7 +67,7 @@ shared actor class tripX_NFT(init_minter: Principal) = this {
 	};
 
   public shared(msg) func mintNFT(request : MintRequest) : async TokenIndex {
-		assert(msg.caller == _minter);
+		// assert(msg.caller == _minter);
     let receiver = ExtCore.User.toAID(request.to);
 		let token = _nextTokenId;
 		let md : Metadata = #nonfungible({
@@ -117,5 +117,13 @@ shared actor class tripX_NFT(init_minter: Principal) = this {
         return #err(#InvalidToken(request.token));
       };
     };
+  };
+
+  public query func getRegistry() : async [(TokenIndex, AccountIdentifier)] {
+    Iter.toArray(_registry.entries());
+  };
+
+  public query func getTokens() : async [(TokenIndex, Metadata)] {
+    Iter.toArray(_tokenMetadata.entries());
   };
 };
