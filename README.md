@@ -37,6 +37,7 @@ Once the job completes, your application will be available at `http://localhost:
 Additionally, if you are making frontend changes, you can start a development server with
 
 ```bash
+npm install
 npm start
 ```
 
