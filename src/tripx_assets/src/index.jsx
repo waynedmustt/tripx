@@ -1,30 +1,27 @@
 import * as React from "react";
 import { createRoot } from 'react-dom/client';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Routes,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import Home from './pages/home'
 import Login from './pages/login'
+import Mint from './pages/mint'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+  Container
+} from 'react-bootstrap';
+import Header from './components/Header'
 
 const TripXdApp = () => {
   return (
     <Router>
-      <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-        </ul>
-
-        <hr />
+      <Container>
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/mint" element={<Mint />} />
           <Route path="/login" element={<Login />} />
           {/* 👇️ only match this when no other routes match */}
           <Route
@@ -36,7 +33,7 @@ const TripXdApp = () => {
             }
           />
         </Routes>
-      </div>
+      </Container>
     </Router>
   );
 };
