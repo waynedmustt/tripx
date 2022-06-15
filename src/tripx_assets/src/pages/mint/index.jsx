@@ -33,7 +33,8 @@ const Mint = () => {
     setSuccess('')
   }
 
-  async function doMintNFT() {
+  async function doMintNFT(e) {
+    e.preventDefault()
     reset()
     if (!url || !description) {
       setError('url or description is invalid!')
@@ -51,7 +52,8 @@ const Mint = () => {
     setSuccess(`succesfully minted. Token ID: ${tokenId}`)
   }
 
-  const showTokenMetadata = async () => {
+  const showTokenMetadata = async (e) => {
+    e.preventDefault()
     reset()
     const tokenMetadatas = await tripx.getTokens()
     if (tokenMetadatas?.length === 0) {
@@ -100,7 +102,7 @@ const Mint = () => {
           </Form.Text>
         </Form.Group>
         <Button variant="primary" type="submit" onClick={doMintNFT}>
-          Submit
+          Mint your NFT!
         </Button>
       </Form>
       <Form style={{flexDirection: 'column'}}>
