@@ -44,9 +44,15 @@ npm start
 Which will start a server at `http://localhost:8080`, proxying API requests to the replica at port 8000.
 
 ## everything about NFT
+### Mint NFT
 
 ```bash
-dfx canister call tripx mintNFT "(record { to = (variant { \"principal\" = principal \"$(dfx identity get-principal)\" }); metadata = opt blob "{\22url\22:\22http://your-url.com/image.png\22,\22description\22:\22my first mint!\22}" })"
+dfx canister call tripx mintNFT "(record { to = (variant { \"principal\" = principal \"$(dfx identity get-principal)\" }); metadata = blob \"\" })"
+```
+
+### Transfer NFT
+```bash
+dfx canister call tripx transfer "(record { to = (variant { \"principal\" = principal \"$(dfx identity get-principal)\" }); token = \"0\"; notify = false; from = (variant { \"principal\" = principal \"RECIPIENT_PRINCIPAL_ID\" }); memo = blob \"\"; amount = 1})"
 ```
 
 ### Note on frontend environment variables
