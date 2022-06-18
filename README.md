@@ -52,7 +52,7 @@ dfx canister call tripx mintNFT "(record { to = (variant { \"principal\" = princ
 
 ### Transfer NFT
 ```bash
-dfx canister call tripx transfer "(record { to = (variant { \"principal\" = principal \"$(dfx identity get-principal)\" }); token = \"0\"; notify = false; from = (variant { \"principal\" = principal \"RECIPIENT_PRINCIPAL_ID\" }); memo = blob \"\"; amount = 1})"
+dfx canister call tripx transfer "(record { to = (variant { \"principal\" = principal \"$(dfx identity get-principal)\" }); token = \"MINTER_TOKEN_IDENTIFIER\"; notify = false; from = (variant { \"principal\" = principal \"RECIPIENT_PRINCIPAL_ID\" }); memo = blob \"\"; amount = 1})"
 ```
 
 ### Note on frontend environment variables
