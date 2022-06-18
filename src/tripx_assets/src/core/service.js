@@ -1,3 +1,5 @@
+import config from '../../config.json'
+
 export const coreService = {
     setItem: (key, value) => {
         localStorage.setItem(key, value);
@@ -13,6 +15,10 @@ export const coreService = {
     },
     getObjectItem: (key) => {
         return JSON.parse(localStorage.getItem(key));
+    },
+    getConfig: (key) => {
+        if (key) return config[key] || false;
+        return config || false;
     },
     isEmptyObject: (value) => {
         if (typeof value !== 'object') {

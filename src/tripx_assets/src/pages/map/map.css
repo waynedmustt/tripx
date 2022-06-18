@@ -1,0 +1,30 @@
+.map-box {
+    min-height: 100vh;
+    padding: 40px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 0 37px rgb(8 21 66 / 5%);
+    box-shadow: 0 0 37px rgb(8 21 66 / 5%);
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.leaflet-container {
+    width: 100%;
+    height: 100vh;
+}
+
+.leaflet-popup-content {
+    margin: 13px 24px 13px 20px;
+    line-height: 1.3;
+    font-size: 13px;
+    font-size: 1.08333em;
+    min-height: 1px;
+    height: 70px;
+}
+
+@media only screen and (max-width: 800px) {
+    .map-box {
+        width: auto !important;
+        padding: 20px;
+    }
+}

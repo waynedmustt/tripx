@@ -6,7 +6,13 @@ import {
   Form,
   Button,
   Table,
+  Container,
+  Row
 } from 'react-bootstrap';
+import {
+  coreService
+} from '../../core/service'
+import './mint.css'
 
 const Mint = () => {
   const [description, setDescription] = React.useState('');
@@ -43,7 +49,7 @@ const Mint = () => {
     }
     const metadata = createNftMetadata({url, description})
     const payload = {
-      to: {principal: Principal.fromText('fucqx-yitaz-ukmrj-vzyr4-b4v4n-molxb-f7ejl-mggj6-zgo2l-uxjsv-eae')},
+      to: {principal: Principal.fromText(coreService.getConfig('minterPrincipal'))},
       metadata
     }
   
@@ -73,41 +79,55 @@ const Mint = () => {
   }
 
   return (
-    <React.Fragment>
-      {showAlert ? 
-        <Alert className="mt-4" key={error ? 'danger': 'success'} variant={error ? 'danger': 'success'}>
-          {error ? error : success}
-        </Alert> : null
-      }
-      <Form style={{flexDirection: 'column', alignItems: 'center', marginTop: '3rem'}}>
-        <Form.Group className="mb-3" controlId="formBasicUrl">
-          <Form.Label>URL</Form.Label>
-          <Form.Control type="text" placeholder="Enter URL" 
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          />
-          <Form.Text className="text-muted">
-            Please input image's URL
-          </Form.Text>
-        </Form.Group>
+    <Container className='pt-4' style={{minHeight: '100vh', background: '#eeeeee'}} fluid>
+      <Row style={{flexDirection: 'column'}} className='pb-4'>
+        <span style={{fontWeight: 'bold', fontSize: '24px'}}>Welcome to Minter Area</span>
+        <span style={{fontWeight: '300', fontSize: '14px'}}>
+          {`You can use this page to minting the NFT and see minted NFT list!`}
+        </span>
+      </Row>
+      <Row className='px-4 pt-4 mint-box' style={{display: 'block', margin: 'auto'}}>
+        {showAlert ? 
+          <Alert className="mt-4" key={error ? 'danger': 'success'} variant={error ? 'danger': 'success'}>
+            {error ? error : success}
+          </Alert> : null
+        }
+        <Form style={{flexDirection: 'column', alignItems: 'center', marginTop: '3rem'}}>
+          <Form.Group className="mb-3" controlId="formBasicUrl">
+            <Form.Label>URL</Form.Label>
+            <Form.Control type="text" placeholder="Enter URL" 
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            />
+            <Form.Text className="text-muted">
+              Please input image's URL
+            </Form.Text>
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicDescription">
-          <Form.Label>Description</Form.Label>
-          <Form.Control type="text" placeholder="Description" 
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          />
-          <Form.Text className="text-muted">
-            Please input image's description
-          </Form.Text>
-        </Form.Group>
-        <Button variant="primary" type="submit" onClick={doMintNFT}>
-          Mint your NFT!
-        </Button>
-      </Form>
-      <Form style={{flexDirection: 'column'}}>
+          <Form.Group className="mb-3" controlId="formBasicDescription">
+            <Form.Label>Description</Form.Label>
+            <Form.Control type="text" placeholder="Description" 
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            />
+            <Form.Text className="text-muted">
+              Please input image's description
+            </Form.Text>
+          </Form.Group>
+          <Button variant="primary" type="submit" onClick={doMintNFT}>
+            Mint your NFT!
+          </Button>
+        </Form>
+      </Row>
+      <Row style={{flexDirection: 'column'}} className='pb-4 pt-4'>
+        <span style={{fontWeight: 'bold', fontSize: '24px'}}>Minted NFT List</span>
+        <span style={{fontWeight: '300', fontSize: '14px'}}>
+          {`Please click button below to show Minted NFT list!`}
+        </span>
+      </Row>
+      <div className="minted-list-box" style={{display: 'flex', flexDirection: 'column'}}>
         <Button variant="primary" type="submit" onClick={showTokenMetadata}>
-          Show Token MetaData
+          Show Minted NFT List
         </Button>
         {tokenMetadatas?.length > 0 ? 
           <Table responsive>
@@ -137,8 +157,8 @@ const Mint = () => {
             </tbody>
           </Table> : null
         }
-      </Form>
-    </React.Fragment>
+      </div>
+    </Container>
   );
 }
 

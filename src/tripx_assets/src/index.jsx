@@ -1,28 +1,52 @@
 import * as React from "react";
-import { createRoot } from 'react-dom/client';
+import { createRoot } from 'react-dom/client'
 import {
   HashRouter as Router,
   Routes,
-  Route
+  Route,
+  Navigate,
+  useLocation
 } from "react-router-dom";
-import Home from './pages/home'
 import Login from './pages/login'
+import Map from './pages/map'
 import Mint from './pages/mint'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-  Container
-} from 'react-bootstrap';
-import Header from './components/Header'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { StoicIdentity } from "ic-stoic-identity"
+import { coreService } from '../src/core/service'
 
 const TripXdApp = () => {
+  function Logout() {
+    StoicIdentity.disconnect();
+
+    return <Navigate to="/" state={{ from: location }} />;
+  }
+  function IsAuthorized({ children }) {
+    const isLoggedIn = coreService.getItem('_scApp')
+    let location = useLocation()
+
+    if (isLoggedIn) {
+      return <Navigate to="/map" state={{ from: location }} />;
+    }
+  
+    return children;
+  }
+  function RequireAuth({ children }) {
+    const isLoggedIn = coreService.getItem('_scApp')
+    let location = useLocation();
+  
+    if (!isLoggedIn) {
+      return <Navigate to="/" state={{ from: location }} />;
+    }
+  
+    return children;
+  }
   return (
     <Router>
-      <Container>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/mint" element={<Mint />} />
-          <Route path="/login" element={<Login />} />
+      <Routes>
+          <Route path="logout" element={<Logout />} />
+          <Route path="/map" element={<RequireAuth><Map /></RequireAuth>} />
+          <Route path="/" element={<IsAuthorized><Login /></IsAuthorized>} />
+          <Route path="/minter-area" element={<Mint />} />
           {/* 👇️ only match this when no other routes match */}
           <Route
             path="*"
@@ -33,7 +57,6 @@ const TripXdApp = () => {
             }
           />
         </Routes>
-      </Container>
     </Router>
   );
 };

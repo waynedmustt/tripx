@@ -18,3 +18,4 @@ package-lock.json
 # other
 .vessel
 declarations/
+src/tripx_assets/config.json

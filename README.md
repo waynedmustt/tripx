@@ -55,6 +55,22 @@ dfx canister call tripx mintNFT "(record { to = (variant { \"principal\" = princ
 dfx canister call tripx transfer "(record { to = (variant { \"principal\" = principal \"$(dfx identity get-principal)\" }); token = \"MINTER_TOKEN_IDENTIFIER\"; notify = false; from = (variant { \"principal\" = principal \"RECIPIENT_PRINCIPAL_ID\" }); memo = blob \"\"; amount = 1})"
 ```
 
+## Frontend Setup
+
+### setup
+
+```bash
+make sure you are on root project directory
+npm install
+cd tripx_assets
+cp config.json.example config.json
+update minterPrincipal on config.json 
+{
+    "minterPrincipal": "YOUR_MINTER_PRINCIPAL_ID"
+}
+npm start
+```
+
 ### Note on frontend environment variables
 
 If you are hosting frontend code somewhere without using DFX, you may need to make one of the following adjustments to ensure your project does not fetch the root key in production:

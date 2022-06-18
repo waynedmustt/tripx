@@ -1,0 +1,26 @@
+.mint-box {
+    min-height: 50vh;
+    width: 500px !important;
+    padding: 40px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 0 37px rgb(8 21 66 / 5%);
+    box-shadow: 0 0 37px rgb(8 21 66 / 5%);
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.minted-list-box {
+    padding: 40px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 0 37px rgb(8 21 66 / 5%);
+    box-shadow: 0 0 37px rgb(8 21 66 / 5%);
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+@media only screen and (max-width: 800px) {
+    .mint-box {
+        width: auto !important;
+        padding: 20px;
+    }
+}
