@@ -84,7 +84,7 @@ shared actor class tripX_NFT(init_minter: Principal) = this {
     if (request.amount != 1) {
 			return #err(#Other("Must use amount of 1"));
 		};
-		if (ExtCore.TokenIdentifier.isPrincipal(request.token, Principal.fromActor(this)) == false) {
+		if (ExtCore.TokenIdentifier.isPrincipal(request.token, _minter) == false) {
 			return #err(#InvalidToken(request.token));
 		};
 		let token = ExtCore.TokenIdentifier.getIndex(request.token);
@@ -97,19 +97,19 @@ shared actor class tripX_NFT(init_minter: Principal) = this {
 				if(AID.equal(owner, token_owner) == false) {
 					return #err(#Unauthorized(owner));
 				};
-				if (AID.equal(owner, spender) == false) {
-					switch (_allowances.get(token)) {
-						case (?token_spender) {
-							if(Principal.equal(msg.caller, token_spender) == false) {								
-								return #err(#Unauthorized(spender));
-							};
-						};
-						case (_) {
-							return #err(#Unauthorized(spender));
-						};
-					};
-				};
-				_allowances.delete(token);
+				// if (AID.equal(owner, spender) == false) {
+				// 	switch (_allowances.get(token)) {
+				// 		case (?token_spender) {
+				// 			if(Principal.equal(msg.caller, token_spender) == false) {								
+				// 				return #err(#Unauthorized(spender));
+				// 			};
+				// 		};
+				// 		case (_) {
+				// 			return #err(#Unauthorized(spender));
+				// 		};
+				// 	};
+				// };
+				// _allowances.delete(token);
 				_registry.put(token, receiver);
 				return #ok(request.amount);
       };
