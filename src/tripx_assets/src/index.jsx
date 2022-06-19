@@ -10,6 +10,7 @@ import {
 import Login from './pages/login'
 import Map from './pages/map'
 import Mint from './pages/mint'
+import StartTrip from './pages/start-trip'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { StoicIdentity } from "ic-stoic-identity"
 import { coreService } from '../src/core/service'
@@ -45,6 +46,7 @@ const TripXdApp = () => {
       <Routes>
           <Route path="logout" element={<Logout />} />
           <Route path="/map" element={<RequireAuth><Map /></RequireAuth>} />
+          <Route path="/start-trip" element={<RequireAuth><StartTrip /></RequireAuth>} />
           <Route path="/" element={<IsAuthorized><Login /></IsAuthorized>} />
           <Route path="/minter-area" element={<Mint />} />
           {/* 👇️ only match this when no other routes match */}

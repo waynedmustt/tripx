@@ -10,8 +10,12 @@ import {
     Popup 
 } from 'react-leaflet'
 import './map.css'
+import {
+    useNavigate
+} from "react-router-dom"
 
 const Map = () => {
+    let navigate = useNavigate()
     // mock for now
     const userLocation = [
         -8.1739118, 115.035572
@@ -20,8 +24,9 @@ const Map = () => {
         -8.160895388966777, 115.02439330846154
     ]
 
-    const startTrip = () => {
-        console.log('start trip!')
+    const startTrip = (e, destination, coordinate) => {
+        e.preventDefault()
+        navigate('/start-trip', { state: { destination: destination, coordinate: coordinate } })
     }
 
     return (
@@ -42,7 +47,8 @@ const Map = () => {
                     <Marker position={destinationLocation}>
                         <Popup style={{height: '70px'}}>
                            Lovina Beach <br />
-                           <Button variant="primary" type="submit" onClick={startTrip}>
+                           <Button variant="primary" type="submit" onClick={
+                            (e) => startTrip(e, 'Lovina Beach', destinationLocation)}>
                                 Start Trip!
                             </Button>
                         </Popup>

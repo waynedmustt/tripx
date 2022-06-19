@@ -1,0 +1,24 @@
+.start-trip-box {
+    min-height: 100vh;
+    width: 700px !important;
+    padding: 40px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 0 37px rgb(8 21 66 / 5%);
+    box-shadow: 0 0 37px rgb(8 21 66 / 5%);
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.dashboard-pulse {
+    margin: auto;
+    display: block !important;
+    width: 4rem !important;
+    height: 4rem !important;
+}
+
+@media only screen and (max-width: 800px) {
+    .start-trip-box {
+        width: auto !important;
+        padding: 20px;
+    }
+}
