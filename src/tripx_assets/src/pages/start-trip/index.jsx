@@ -32,30 +32,30 @@ const StartTrip = () => {
         return (
             <React.Fragment>
                 <Form.Group className="mb-3">
-                        <Form.Label>
-                            <span style={{fontWeight: 'bold', fontSize: '24px'}}>You choose {location?.state?.destination}</span>
-                        </Form.Label>
-                    </Form.Group>
+                    <Form.Label>
+                        <span style={{fontWeight: 'bold', fontSize: '24px'}}>You choose {location?.state?.destination}</span>
+                    </Form.Label>
+                </Form.Group>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label>
-                            <span style={{fontWeight: 'bold', fontSize: '18px'}}>
-                                Enjoy your trip and you will be notified once you have arrived at destination!
-                            </span>
-                        </Form.Label>
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>
-                            <span className='text-center mt-4' style={{fontWeight: '300', fontSize: '14px'}}>
-                                <a href={`https://google.com/maps?q=@${location?.state?.coordinate[0]},${location?.state?.coordinate[1]}`}
-                                target='_blank'
-                                >
-                                    Show Direction
-                                </a>
-                            </span>
-                        </Form.Label>
-                    </Form.Group>
-                    <Spinner animation="grow" className='dashboard-pulse' />
+                <Form.Group className="mb-3">
+                    <Form.Label>
+                        <span style={{fontWeight: 'bold', fontSize: '18px'}}>
+                            Enjoy your trip and you will be notified once you have arrived at destination!
+                        </span>
+                    </Form.Label>
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>
+                        <span className='text-center mt-4' style={{fontWeight: '300', fontSize: '14px'}}>
+                            <a href={`https://google.com/maps?q=@${location?.state?.coordinate[0]},${location?.state?.coordinate[1]}`}
+                            target='_blank'
+                            >
+                                Show Direction
+                            </a>
+                        </span>
+                    </Form.Label>
+                </Form.Group>
+                <Spinner animation="grow" className='dashboard-pulse' />
             </React.Fragment>
         )
     }
@@ -69,24 +69,24 @@ const StartTrip = () => {
         return (
             <React.Fragment>
                 <Form.Group className="mb-3">
-                        <Form.Label>
-                            <span style={{fontWeight: 'bold', fontSize: '24px'}}>You have arrived at {location?.state?.destination}!</span>
-                        </Form.Label>
-                    </Form.Group>
+                    <Form.Label>
+                        <span style={{fontWeight: 'bold', fontSize: '24px'}}>You have arrived at {location?.state?.destination}!</span>
+                    </Form.Label>
+                </Form.Group>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label>
-                            <span style={{fontWeight: 'bold', fontSize: '18px'}}>
-                                Start your adventure, raise your Trip Power (TPO) Experience, and 
-                                have a chance to win treasure (hidden NFT)! 
-                            </span>
-                        </Form.Label>
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Button variant="primary" type="submit" onClick={doQuest}>
-                            Complete Quest!
-                        </Button>
-                    </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>
+                        <span style={{fontWeight: 'bold', fontSize: '18px'}}>
+                            Start your adventure, raise your Trip Power (TPO) Experience, and 
+                            have a chance to win treasure (hidden NFT)! 
+                        </span>
+                    </Form.Label>
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Button variant="primary" type="submit" onClick={doQuest}>
+                        Complete Quest!
+                    </Button>
+                </Form.Group>
             </React.Fragment>
         )
     }
