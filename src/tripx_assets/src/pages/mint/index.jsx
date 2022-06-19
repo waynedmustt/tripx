@@ -111,6 +111,7 @@ const Mint = () => {
             <Form.Control type="text" placeholder="Enter URL" 
             value={url}
             onChange={(e) => setUrl(e.target.value)}
+            disabled={disabled}
             />
             <Form.Text className="text-muted">
               Please input image's URL
@@ -122,12 +123,15 @@ const Mint = () => {
             <Form.Control type="text" placeholder="Description" 
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            disabled={disabled}
             />
             <Form.Text className="text-muted">
               Please input image's description
             </Form.Text>
           </Form.Group>
-          <Button variant="primary" type="submit" onClick={doMintNFT}>
+          <Button variant="primary" type="submit" onClick={doMintNFT}
+          disabled={disabled}
+          >
             Mint your NFT!
           </Button>
         </Form>
