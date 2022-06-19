@@ -1,6 +1,6 @@
-import * as React from "react";
-import { tripx } from "../../../../declarations/tripx";
-import { Principal } from '@dfinity/principal';
+import * as React from "react"
+import { tripx } from "../../../../declarations/tripx"
+import { Principal } from '@dfinity/principal'
 import {
   Alert,
   Form,
@@ -15,8 +15,8 @@ import {
 import './mint.css'
 
 const Mint = () => {
-  const [description, setDescription] = React.useState('');
-  const [url, setUrl] = React.useState('');
+  const [description, setDescription] = React.useState('')
+  const [url, setUrl] = React.useState('')
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('')
   const [showAlert, setShowAlert] = React.useState(false)
@@ -28,9 +28,9 @@ const Mint = () => {
     }
     const encoder = new TextEncoder();
     const mintNftData = {url: url, description: description};
-    const metadataBlob = encoder.encode(JSON.stringify(mintNftData));
+    const metadataBlob = encoder.encode(JSON.stringify(mintNftData))
   
-    return [Array.from(metadataBlob)];
+    return [Array.from(metadataBlob)]
   }
 
   function reset() {
@@ -68,11 +68,20 @@ const Mint = () => {
       return;
     }
 
+    const registries = await tripx.getRegistry()
     const decoder = new TextDecoder();
     let tokenMetadataList = []
     for (let i = 0; i < tokenMetadatas?.length; i += 1) {
       const tokenMetadata = tokenMetadatas[i][1]?.nonfungible?.metadata[0]
-      tokenMetadataList.push(JSON.parse(decoder.decode(new Uint8Array(tokenMetadata))))
+      const parsedTokenMetadata = JSON.parse(decoder.decode(new Uint8Array(tokenMetadata)))
+      parsedTokenMetadata['tokenId'] = tokenMetadatas[i][0]
+
+      for (let j = 0; j < registries?.length; j += 1) {
+        if (parsedTokenMetadata['tokenId'] === registries[j][0]) {
+          parsedTokenMetadata['accountIdentifier'] = registries[j][1]
+        }
+      }
+      tokenMetadataList.push(parsedTokenMetadata)
     }
 
     setTokenMetadatas(tokenMetadataList)
@@ -136,6 +145,7 @@ const Mint = () => {
                 <th>Token ID</th>
                 <th>URL</th>
                 <th>Description</th>
+                <th>Account Identifier</th>
               </tr>
             </thead>
             <tbody>
@@ -143,13 +153,16 @@ const Mint = () => {
                 tokenMetadatas?.map((tokenMetadata, i) => (
                   <tr key={i}>
                     <td>
-                      <span>{i}</span>
+                      <span>{tokenMetadata?.tokenId}</span>
                     </td>
                     <td>
                       <span>{tokenMetadata?.url}</span>
                     </td>
                     <td>
                       <span>{tokenMetadata?.description}</span>
+                    </td>
+                    <td>
+                      <span>{tokenMetadata?.accountIdentifier}</span>
                     </td>
                   </tr>
                 ))
