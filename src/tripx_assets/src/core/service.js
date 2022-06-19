@@ -30,6 +30,9 @@ export const coreService = {
     scrollUp: () => {
         window.scrollTo(0, 0);
     },
+    getRndInteger: (min, max) => {
+        return Math.floor(Math.random() * (max - min)) + min;
+    },
     checkAuthorization: (err) => {
         if (err?.response?.status === 401) {
             coreService.removeItem('isLoggedIn');

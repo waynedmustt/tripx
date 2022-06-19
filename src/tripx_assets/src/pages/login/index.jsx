@@ -1,8 +1,5 @@
 import * as React from "react"
 import { StoicIdentity } from "ic-stoic-identity"
-import { tripx } from "../../../../declarations/tripx"
-import { Principal } from '@dfinity/principal'
-import { coreService } from '../../core/service'
 import {
     Container,
     Row,
@@ -14,15 +11,6 @@ import './login.css'
 
 const Login = () => {
     let navigate = useNavigate()
-    React.useEffect(() => {
-        async function init() {
-            const storedPrincipal = coreService.getObjectItem('_scApp')
-            if (!storedPrincipal?.principal) {
-                return
-            }
-        }
-        init()
-    }, [])
 
     const loginStoic = async (e) => {
         e.preventDefault()
@@ -39,37 +27,6 @@ const Login = () => {
             navigate('/map')
         })
     }
-
-    const to32bits = num => {
-        let b = new ArrayBuffer(4);
-        new DataView(b).setUint32(0, num);
-        return Array.from(new Uint8Array(b));
-    }
-
-    const tokenIdentifier = (principal, index) => {
-        const padding = Buffer("\x0Atid");
-        const array = new Uint8Array([
-            ...padding,
-            ...Principal.fromText(principal).toUint8Array(),
-            ...to32bits(index),
-        ]);
-        return Principal.fromUint8Array(array).toText();
-    };
-
-    // const transfer = async () => {
-    //     const ParsedTokenIdentifier = tokenIdentifier(coreService.getConfig('minterPrincipal'), 0)
-    //     const payload = {
-    //         to: {principal: Principal.fromText(userPrincipal)},
-    //         token: ParsedTokenIdentifier,
-    //         notify: false,
-    //         from: {principal: Principal.fromText(coreService.getConfig('minterPrincipal'))},
-    //         memo : [],
-    //         subaccount: [],
-    //         amount : 1,
-    //       }
-    //     const response = await tripx.transfer(payload)
-    //     console.log(response, 'test')
-    // }
 
     return (
         <Container className='pt-4' style={{minHeight: '100vh', background: '#eeeeee'}} fluid>

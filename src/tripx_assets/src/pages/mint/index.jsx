@@ -21,6 +21,7 @@ const Mint = () => {
   const [success, setSuccess] = React.useState('')
   const [showAlert, setShowAlert] = React.useState(false)
   const [tokenMetadatas, setTokenMetadatas] = React.useState([])
+  const [disabled, setDisabled] = React.useState(false)
 
   function createNftMetadata({url, description}) {
     if (!url) {
@@ -42,9 +43,11 @@ const Mint = () => {
   async function doMintNFT(e) {
     e.preventDefault()
     reset()
+    setDisabled(true)
     if (!url || !description) {
       setError('url or description is invalid!')
       setShowAlert(true)
+      setDisabled(false)
       return
     }
     const metadata = createNftMetadata({url, description})
@@ -55,6 +58,7 @@ const Mint = () => {
   
     const tokenId = await tripx.mintNFT(payload);
     setShowAlert(true)
+    setDisabled(false)
     setSuccess(`succesfully minted. Token ID: ${tokenId}`)
   }
 

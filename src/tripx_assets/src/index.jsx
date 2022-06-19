@@ -12,6 +12,7 @@ import Map from './pages/map'
 import Mint from './pages/mint'
 import StartTrip from './pages/start-trip'
 import Quest from './pages/quest'
+import WonNFT from './pages/won-nft'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { StoicIdentity } from "ic-stoic-identity"
 import { coreService } from '../src/core/service'
@@ -49,6 +50,7 @@ const TripXdApp = () => {
           <Route path="/map" element={<RequireAuth><Map /></RequireAuth>} />
           <Route path="/start-trip" element={<RequireAuth><StartTrip /></RequireAuth>} />
           <Route path="/quest" element={<RequireAuth><Quest /></RequireAuth>} />
+          <Route path="/won-nft" element={<RequireAuth><WonNFT /></RequireAuth>} />
           <Route path="/" element={<IsAuthorized><Login /></IsAuthorized>} />
           <Route path="/minter-area" element={<Mint />} />
           {/* 👇️ only match this when no other routes match */}

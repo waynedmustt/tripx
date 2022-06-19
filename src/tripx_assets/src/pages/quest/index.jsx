@@ -21,10 +21,15 @@ const Quest = () => {
     const [disabled, setDisabled] = React.useState(false)
     const [showSpinner, setShowSpinner] = React.useState(false)
 
-    const completeQuest = (e) => {
-        e.preventDefault()
+    const reset = () => {
         setDisabled(true)
         setShowAlert(false)
+        setError('')
+    }
+
+    const completeQuest = (e) => {
+        e.preventDefault()
+        reset()
         if (!url) {
             setShowAlert(true)
             setDisabled(false)
@@ -35,13 +40,13 @@ const Quest = () => {
         setShowSpinner(true)
         setSuccess('Please waiting for confirmation if you eligible to win treasure!')
         setTimeout(() => {
-            // navigate('/won-nft', {wonNFT: true})
+            navigate('/won-nft', { state: { wonNFT: true } })
         }, 5000)
     }
 
     return (
         <Container className='pt-4 pb-4' style={{minHeight: '100vh', background: '#eeeeee'}} fluid>
-            <Row className='px-4 pt-4 start-trip-box' style={{display: 'block', margin: 'auto'}}>
+            <Row className='px-4 pt-4 quest-box' style={{display: 'block', margin: 'auto'}}>
                 {showAlert ? 
                 <Alert className="mt-4" key={error ? 'danger': 'success'} variant={error ? 'danger': 'success'}>
                     {error ? error : success}
