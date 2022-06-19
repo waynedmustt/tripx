@@ -111,7 +111,7 @@ const WonNFT = () => {
     }
 
     return (
-        <Container className='pt-4 pb-4' style={{minHeight: '100vh', background: '#eeeeee'}} fluid>
+        <Container className='pt-4 pb-4 background' fluid>
             <Row className='px-4 pt-4 won-nft-box' style={{display: 'block', margin: 'auto'}}>
                 {showAlert ? 
                 <Alert className="mt-4" key={error ? 'danger': 'success'} variant={error ? 'danger': 'success'}>

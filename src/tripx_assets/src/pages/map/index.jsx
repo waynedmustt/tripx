@@ -30,7 +30,7 @@ const Map = () => {
     }
 
     return (
-        <Container className='pt-4 pb-4' style={{minHeight: '100vh', background: '#eeeeee'}} fluid>
+        <Container className='pt-4 pb-4 background' fluid>
             <div className="map-box" style={{display: 'flex', flexDirection: 'column'}}>
                 <span style={{fontWeight: 'bold', fontSize: '24px'}}>Choose your destination</span>
                 <span style={{fontWeight: '300', fontSize: '14px'}}>{`do trip and earn crypto!`}</span>

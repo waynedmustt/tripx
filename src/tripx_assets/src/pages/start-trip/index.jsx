@@ -92,7 +92,7 @@ const StartTrip = () => {
     }
 
     return (
-        <Container className='pt-4 pb-4' style={{minHeight: '100vh', background: '#eeeeee'}} fluid>
+        <Container className='pt-4 pb-4 background' fluid>
             <Row className='px-4 pt-4 start-trip-box' style={{display: 'block', margin: 'auto'}}>
                 <Form style={{flexDirection: 'column', alignItems: 'center', marginTop: '3rem'}} className='text-center'>
                     {!hasArrived ?

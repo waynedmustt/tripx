@@ -92,7 +92,7 @@ const Mint = () => {
   }
 
   return (
-    <Container className='pt-4' style={{minHeight: '100vh', background: '#eeeeee'}} fluid>
+    <Container className='pt-4 background' fluid>
       <Row style={{flexDirection: 'column'}} className='pb-4'>
         <span style={{fontWeight: 'bold', fontSize: '24px'}}>Welcome to Minter Area</span>
         <span style={{fontWeight: '300', fontSize: '14px'}}>

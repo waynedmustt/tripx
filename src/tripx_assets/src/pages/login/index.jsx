@@ -29,7 +29,7 @@ const Login = () => {
     }
 
     return (
-        <Container className='pt-4' style={{minHeight: '100vh', background: '#eeeeee'}} fluid>
+        <Container className='pt-4 background' fluid>
             <Row className='px-4 pt-4 login-box' style={{display: 'block', margin: 'auto'}}>
                 <Form>
                     <Form.Group className="mb-3 text-center">

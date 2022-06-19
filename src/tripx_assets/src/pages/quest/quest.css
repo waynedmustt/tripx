@@ -16,6 +16,11 @@
     height: 4rem !important;
 }
 
+.background {
+    min-height: 100vh;
+    background: url(https://pix10.agoda.net/hotelImages/301716/-1/fe9724d8fb4da3dd4590353bd771a276.jpg);
+}
+
 @media only screen and (max-width: 800px) {
     .quest-box {
         width: auto !important;
