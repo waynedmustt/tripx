@@ -25,6 +25,16 @@ dfx config --help
 If you want to test your project locally, you can use the following commands:
 
 ```bash
+# Clone EXT repo
+please clone this repository by running command: 
+git clone https://github.com/waynedmustt/extendable-token
+make sure you clone the repo above on THE SAME LEVEL as project root directory.
+
+# Copy EXT into tripX dapp
+cd tripx/ (make sure you are on project root directory)
+mkdir src/ext
+cp -R ../extendable-token/* src/ext
+
 # Starts the replica, running in the background
 dfx start --background
 
@@ -37,7 +47,14 @@ Once the job completes, your application will be available at `http://localhost:
 Additionally, if you are making frontend changes, you can start a development server with
 
 ```bash
+make sure you are on root project directory
 npm install
+cd tripx_assets
+cp config.json.example config.json
+update minterPrincipal on config.json 
+{
+    "minterPrincipal": "YOUR_MINTER_PRINCIPAL_ID"
+}
 npm start
 ```
 
@@ -56,20 +73,6 @@ dfx canister call tripx transfer "(record { to = (variant { \"principal\" = prin
 ```
 
 ## Frontend Setup
-
-### setup
-
-```bash
-make sure you are on root project directory
-npm install
-cd tripx_assets
-cp config.json.example config.json
-update minterPrincipal on config.json 
-{
-    "minterPrincipal": "YOUR_MINTER_PRINCIPAL_ID"
-}
-npm start
-```
 
 ### Note on frontend environment variables
 
